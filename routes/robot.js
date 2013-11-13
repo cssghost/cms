@@ -1,42 +1,70 @@
-var editFile = require("../tools/file");
+var file = require("../tools/file");
+var Config = require("../tools/config");
 var fs = require("fs");
+
+var path = require('path');
+
+var publicDir = path.join(__dirname, "..", "public");  
+
+// init less dir
+var comLessDir = path.join(publicDir, "less"); 
+  
+var lessDefDir = path.join(comLessDir, "default");
+var lessViewDir = path.join(comLessDir, "preview");
+var lessPubDir = path.join(comLessDir, "publish");
+
+// init css dir
+var cssDir = path.join(publicDir, "css"); 
 
 
 exports.readChatConfig = function(req, res){
-    fs.readFile(
-        "public/less/config/config-robot.less",
-        'utf-8',
-        function(readErr, data) {
-            if (readErr) {
-                callback(readErr);
-                return false;
-            } else {
-                var strFile = data;
-                var matchColor = strFile.match(/\@chat-bc\:(.+)\;/);
-                var matchImage = strFile.match(/\@chat-bg\:(.+)\;/);
-                var matchImageRepeat = strFile.match(/\@chat-repeat\:(.+)\;/);
-                var isColor = matchColor[1] == "transparent" ? "" : "checked";
-                var isImage = matchImage[1] == "i.gif" ? "" : "checked";
-                var isRepeat = matchImageRepeat[1] == "no-repeat center" ? "" : "checked";
-                // res.send(matchColor[1]);
-                res.render('robot', { title : "robot", chatColor: matchColor[1], chatColorChecked : isColor, chatImageChecked : isImage, chatImageRepeatChecked : isRepeat });
-                // for(var key in param){
-                //     var reg = new RegExp("\@" + key + "[^\\;]+\\;", "gi");
-                //     strFile = strFile.replace(reg, "@" + key + ":" + param[key] + ";");
-                // }
-                // var resultBuffer = new Buffer(strFile);
-                // fs.writeFile(rpath + "/" + filename,resultBuffer,function(writeErr){
-                //     if(writeErr) {
-                //         callback(writeErr);
-                //         return false;
-                //     }
-                //     console.log(rpath);
-                //     lessc.lessc(rpath.replace(/\\[^\\]+\\?$/gi,"\\"), filename.replace("config-", ""), callback);
-                //     // callback(readErr, "success");
-                // });
-            } 
+    var _config = new Config.config({
+        request : res,
+        response : res,
+        viewName : "robot",
+        viewParam : ["isChatBc", "chatBc", "isChatBg", "chatBg", "isChatRepeat"],
+        viewCallback : function(data){
+            // res.send(data);
+            res.render('robot', { title : "robot", head : '', chatColor: data.chatBc, chatColorChecked : data.isChatBc, chatImageChecked : data.isChatBg, chatImageRepeatChecked : data.isChatRepeat });
+            // res.render('robot', { title: 'Express', head : '' });
         }
-    );
+    });
+    _config.pageLoad();
+    // console.log(Config);
+    // fs.readFile(
+    //     "public/less/config/config-robot.less",
+    //     'utf-8',
+    //     function(readErr, data) {
+    //         if (readErr) {
+    //             callback(readErr);
+    //             return false;
+    //         } else {
+    //             var strFile = data;
+    //             var matchColor = strFile.match(/\@chat-bc\:(.+)\;/);
+    //             var matchImage = strFile.match(/\@chat-bg\:(.+)\;/);
+    //             var matchImageRepeat = strFile.match(/\@chat-repeat\:(.+)\;/);
+    //             var isColor = matchColor[1] == "transparent" ? "" : "checked";
+    //             var isImage = matchImage[1] == "i.gif" ? "" : "checked";
+    //             var isRepeat = matchImageRepeat[1] == "no-repeat center" ? "" : "checked";
+    //             // res.send(matchColor[1]);
+    //             res.render('robot', { title : "robot", chatColor: matchColor[1], chatColorChecked : isColor, chatImageChecked : isImage, chatImageRepeatChecked : isRepeat });
+    //             // for(var key in param){
+    //             //     var reg = new RegExp("\@" + key + "[^\\;]+\\;", "gi");
+    //             //     strFile = strFile.replace(reg, "@" + key + ":" + param[key] + ";");
+    //             // }
+    //             // var resultBuffer = new Buffer(strFile);
+    //             // fs.writeFile(rpath + "/" + filename,resultBuffer,function(writeErr){
+    //             //     if(writeErr) {
+    //             //         callback(writeErr);
+    //             //         return false;
+    //             //     }
+    //             //     console.log(rpath);
+    //             //     lessc.lessc(rpath.replace(/\\[^\\]+\\?$/gi,"\\"), filename.replace("config-", ""), callback);
+    //             //     // callback(readErr, "success");
+    //             // });
+    //         } 
+    //     }
+    // );
     // res.render('robot', { chatcolor: 'matchColor[1]' });
 };
 

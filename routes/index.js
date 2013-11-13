@@ -8,22 +8,19 @@ var robot = require("./robot");
 //     });
 // };
 exports.index = function(req, res){
-    res.render('index', { title: 'Express' });
+    res.render('index', { title: 'Express', head : '' });
 };
 
-exports.hello = function(req, res) {
-    console.log(tools);
-    res.send('The time is ' + new Date().toString());
-}; 
+// page robot
 
 exports.robot = function(req, res){
     robot.readChatConfig(req, res);
 };
 
-exports.robotBody = function(req, res){
-    res.render('robot-iframe', { title: 'Express' });
-};
+// exports.robotBody = function(req, res){
+//     res.render('robot-iframe', { title: 'Express' });
+// };
 
-exports.robotChatBg = function(req, res){
-    robot.robotChatBg(req, res);
-};
+// exports.robotChatBg = function(req, res){
+//     robot.robotChatBg(req, res);
+// };

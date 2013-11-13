@@ -36,6 +36,8 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 
+app.get('/robot', routes.robot);
+
 http.createServer(app).listen(app.get('port'), function(){
     lessc.lesscAll();
     console.log('Express server listening on port ' + app.get('port'));
