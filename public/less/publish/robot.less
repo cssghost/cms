@@ -1,25 +1,6 @@
 @import "config/less-base.less";
 @import "config/module-common.less";
 @import "config/config-robot.less";
-// ------robot--------
-@robot-bc:#f5f5f5;
-@robot-color:#000;
-@robot-maxWidth:80%;
-@robot-fontfamily:'宋体';
-@robot-fontsize: 14px;
-@robot-fontweight:normal;
-@robot-fontstyle : normal;
-@robot-textdecoration : normal;
-// -------user---------
-@user-bc:#ebffcc;
-@user-color:#000;
-@user-maxWidth:80%;
-@user-fontfamily:'宋体';
-@user-fontsize: 14px;
-@user-fontweight:normal;
-@user-fontstyle : normal;
-@user-textdecoration : normal;
-
 
 .robot {
 	position: absolute; left: 50%; top: 50%;
@@ -56,7 +37,7 @@
 	.pd(10px);
 	.pt(50px);
 	overflow: auto;
-	.bg-tpls(@chatBg, @chatBc no-repeat 0 0);
+	.bg-tpls(@chatBg, @chatBc @chatRepeat);
 	.decorate {
 		.w(9px);
 		.h(8px);
@@ -77,20 +58,20 @@
 		.pos-r();
 		.fl();
 		min-width: 189px;
-		max-width: @robot-maxWidth;
+		max-width: @robotMaxwidth;
 		*width:80%;
 		_width:80%;
 		.ml(10px);
 		
 		.pd(9px);
 		.bd(#dddddd);
-		.bc(@robot-bc);
-		.c(@robot-color);
-		.fm(@robot-fontfamily);
-		.fz(@robot-fontsize);
-		.fw(@robot-fontweight);
-		font-style:@robot-fontstyle;
-		text-decoration:@robot-textdecoration;
+		.bc(@robotBc);
+		.c(@robotColor);
+		.fm(@robotFontfamily);
+		.fz(@robotFontsize);
+		.fw(@robotFontweight);
+		font-style:@robotFontstyle;
+		text-decoration:@robotTextdecoration;
 		& .decorate {
 			left:-9px;
 			.bp(0 0)
@@ -103,20 +84,20 @@
 		.pos-r();
 		.fr();
 		min-width: 189px;
-		max-width: @user-maxWidth;
+		max-width: @userMaxwidth;
 		*width:80%;
 		_width:80%;
 		.mr(10px);
 		
 		.pd(9px);
 		.bd(#aed474);
-		.bc(@user-bc);
-		.c(@user-color);
-		.fm(@user-fontfamily);
-		.fz(@user-fontsize);
-		.fw(@user-fontweight);
-		font-style:@user-fontstyle;
-		text-decoration:@user-textdecoration;
+		.bc(@userBc);
+		.c(@userColor);
+		.fm(@userFontfamily);
+		.fz(@userFontsize);
+		.fw(@userFontweight);
+		font-style:@userFontstyle;
+		text-decoration:@userTextdecoration;
 		& .decorate {
 			right:-9px;
 			.bp(0 -8px);
@@ -259,9 +240,19 @@
 		}
 	}
 	.user-money {
+		display: @userMoneyDis;
 		dd {
 			.pl(12px);
 			.bg-lib('icon-list.png', no-repeat 0 -47px);
 		}
+	}
+	.user-area {
+		display: @userAreaDis;
+	}
+	.user-tit {
+		display: @userTitDis;
+	}
+	.user-exp {
+		display: @userExpDis;
 	}
 }

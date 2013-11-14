@@ -1,16 +1,49 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title><%=title%></title>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title><%=title%></title>
     <link href="/css/base.css" rel="stylesheet" type="text/css" />
-    <link href="/css/CMS.css" rel="stylesheet" type="text/css" />
+    <link href="/css/cms.css" rel="stylesheet" type="text/css" />
+    <link href="js/plugin/farbtastic/farbtastic.css" rel="stylesheet" type="text/css" />
     <script src="/js/lib/jquery-1.8.2.js"></script>
     <script src="/js/lib/jquery.plugin.js"></script>
+    <script src="/js/lib/page-set.js"></script>
+    <script src="/js/cms/layout.js"></script>
     <script src="/js/plugin/jquery.form.js"></script>
-    <%=head%>
+    <script src="js/plugin/farbtastic/farbtastic.js"></script>
+    <% for(var i = 0; i < headJs.length; i++) { %>
+        <script src="<%= headJs[i] %>"></script>
+    <% } %>
+    <% for(var i = 0; i < headCss.length; i++) { %>
+        <link href="<%= headCss[i] %>" rel="stylesheet" type="text/css" />
+    <% } %>
 </head>
 <body>
-    <%- body%>
+    <div class="cms-topnav">
+        <h6>CMS配置管理系统</h6>
+        <a href="javascript:void(0)" class="topnav-btn">系统框架设置</a>
+        <a href="javascript:void(0)" class="topnav-btn">应用功能设置</a>
+        <a href="javascript:void(0)" class="topnav-btn">勋章等级设置</a>
+        <a href="javascript:void(0)" class="topnav-btn">运营功能设置</a>
+        <div class="group-btn">
+            <a href="javascript:void(0)" class="topnav-btn">帮助信息</a>
+            <a href="javascript:void(0)" class="topnav-btn">联系我们</a>
+            <a href="javascript:void(0)" class="topnav-btn">退出登录</a>
+        </div>
+        <div class="group-btn">
+            <a href="javascript:void(0)" class="topnav-btn">系统用户管理</a>
+            <a href="javascript:void(0)" class="topnav-btn">修改日志查询</a>
+        </div>
+    </div>
+    <div class="cms-sidebar">
+        <div href="javascript:void(0)" class="sidebar-btn">网页及机器人版</div>
+        <div href="javascript:void(0)" class="sidebar-btn">手机版</div>
+    </div>
+    
+    <div class="cms-layout fn-clear">
+        <%- body%>
+    </div>
 </body>
 </html>

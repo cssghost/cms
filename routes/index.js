@@ -13,12 +13,12 @@ exports.index = function(req, res){
 
 // page robot
 
-exports.robot = function(req, res){
-    robot.readChatConfig(req, res);
-};
+// exports.robot = function(req, res){
+//     robot.readConfig(req, res);
+// };
 
 // exports.robotBody = function(req, res){
-//     res.render('robot-iframe', { title: 'Express' });
+    
 // };
 
 // exports.robotChatBg = function(req, res){

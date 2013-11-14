@@ -1,3 +1,6 @@
+body {
+  overflow: hidden;
+}
 .cms-topnav {
   position: fixed;
   top: 0px;
@@ -27,10 +30,30 @@
   float: right;
   margin-right: 50px;
 }
-.cms-layout {
-  margin-top: 61px;
+.cms-page-name {
+  position: fixed;
+  top: 61px;
+  left: 100px;
+  z-index: 999998;
+  background-color: #ffffff;
+  height: 39px;
+  border-bottom: 1px solid #cccccc;
+  line-height: 39px;
+  box-shadow: 0 1px 3px #C7BFBF;
 }
-.sidebar {
+.cms-page-name h6 {
+  margin-left: 10px;
+  float: left;
+  font-size: 18px;
+  font-weight: bold;
+}
+.cms-page-name a {
+  float: right;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+.cms-sidebar {
   position: fixed;
   top: 61px;
   left: 0;
@@ -41,25 +64,26 @@
   background-color: #ffffff;
   box-shadow: 1px 0 3px #C7BFBF;
 }
-.sidebar .sidebar-btn {
+.cms-sidebar .sidebar-btn {
   text-align: center;
   padding: 20px 0;
   border-bottom: 1px solid #cccccc;
   cursor: pointer;
 }
-.cms-page {
-  position: fixed;
-  left: 100px;
-  top: 61px;
-  z-index: 88;
-  width: 700px;
-  height: 100%;
+.cms-layout {
+  margin: 101px 0 0 101px;
   overflow: auto;
 }
+.cms-page {
+  width: 100%;
+  height: 100%;
+}
 .cms-option {
-  position: relative;
-  z-index: 99;
-  margin-left: 800px;
+  position: fixed;
+  top: 61px;
+  right: 0;
+  width: 528px;
+  height: 100%;
   padding: 0 10px;
   border-left: 1px solid #cccccc;
   background-color: #ffffff;
@@ -92,7 +116,6 @@
 }
 .cms-option .opt-content-wrap {
   padding: 10px;
-  overflow: hidden;
 }
 .cms-option .label-box-tit {
   color: #ac0707;
@@ -145,6 +168,9 @@
   border: 1px solid #cccccc;
 }
 .cms-option .opt-content .head-img {
+  position: absolute;
+  right: 0;
+  top: 0;
   display: inline-block;
   width: 100px;
   height: 120px;
@@ -295,9 +321,6 @@
   width: 20px;
   height: 20px;
 }
-div.index-nav {
-  width: 800px;
-}
-div.layout-topnav {
-  width: 800px;
+.cms-option .vt {
+  vertical-align: top;
 }

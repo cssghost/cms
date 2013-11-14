@@ -14,6 +14,10 @@ var lessc = require("./tools/lessc");
 
 var app = express();
 
+// scene
+
+var sceneRobot = require("./routes/robot");
+
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
@@ -36,7 +40,11 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-app.get('/robot', routes.robot);
+// page robot
+app.get('/robot', sceneRobot.readConfig);
+app.get('/robot-body', sceneRobot.showView);
+
+app.post('/robot/chat/', sceneRobot.chat);
 
 http.createServer(app).listen(app.get('port'), function(){
     lessc.lesscAll();

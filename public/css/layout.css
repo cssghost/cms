@@ -5,7 +5,6 @@
   z-index: 9999;
   width: 100%;
   margin-left: -500px;
-  padding-left: 10px;
   height: 40px;
   line-height: 36px;
   background: url("../images/lib/repeat-bg.png") repeat-x left top;
@@ -50,18 +49,23 @@
   color: #669900;
 }
 .layout-topnav .login-btn-wrap .user {
+  display: inline-block;
   position: relative;
   padding-right: 25px;
 }
 .layout-topnav .login-btn-wrap .iask {
+  display: inline-block;
   padding-left: 35px;
   background: url("../images/lib/nav-login.png") no-repeat 0 2px;
 }
 .layout-topnav .login-btn-wrap .qr {
-  display: block;
+  display: inline-block;
   width: 25px;
   height: 38px;
   background: url("../images/lib/nav-login.png") no-repeat 0px -54px;
+}
+.layout-topnav .login-btn-wrap .login {
+  display: inline-block;
 }
 .layout-topnav .pop {
   position: absolute;
@@ -287,6 +291,7 @@
   border: 2px solid #aed474;
 }
 .layout-search .hot-key {
+  display: block;
   height: 30px;
   padding-left: 135px;
   background: url("../images/lib/hot-key-bg.png") no-repeat 0 0;
@@ -320,7 +325,6 @@
 }
 .layout-search .other .img,
 .layout-search .other .movie {
-  display: inline-block;
   height: 20px;
   line-height: 20px;
   padding-left: 30px;
@@ -328,9 +332,11 @@
   color: #333333;
 }
 .layout-search .other .img {
+  display: inline-block;
   background: url("../images/lib/other-img.png") no-repeat;
 }
 .layout-search .other .movie {
+  display: inline-block;
   background: url("../images/lib/other-movie.png") no-repeat;
 }
 .layout-search .other .other-pop {
@@ -778,6 +784,7 @@
   background-color: #87b039;
 }
 .foot-icon-list {
+  display: block;
   width: 480px;
   height: 30px;
   margin: 50px auto 0;
@@ -788,23 +795,26 @@
   *display: inline;
   *zoom: 1;
   height: 30px;
-  margin: 0 20px 0 30px;
 }
 .foot-icon-list a,
 .foot-icon-list span {
   display: block;
   height: 30px;
+  margin: 0 20px 0 30px;
   background: url("../images/tpls/index-icon-list.png") no-repeat 0 0;
 }
 .foot-icon-list .ios {
+  display: inline-block;
   width: 100px;
   background-position: 0 0;
 }
 .foot-icon-list .andriod {
+  display: inline-block;
   width: 120px;
   background-position: -100px 0;
 }
 .foot-icon-list .foot-robot {
+  display: inline-block;
   width: 110px;
   background-position: -220px 0;
 }
@@ -871,6 +881,21 @@
 .star-5 {
   background-position: 0 -60px;
 }
+.module-list-box .list-box-img {
+  float: left;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+}
+.module-list-box .list-box-img img {
+  width: 80px;
+  height: 80px;
+}
+.module-list-box .list-box-textinfo {
+  float: left;
+  width: 475px;
+  margin-left: 15px;
+}
 .module-list-box li {
   position: relative;
   border-bottom: 1px solid #eeeeee;
@@ -887,7 +912,7 @@
 }
 .module-list-box .list-tit h6 {
   float: left;
-  width: 477px;
+  width: 400px;
   font-weight: bold;
   color: #669900;
   font-size: 14px;
@@ -907,8 +932,11 @@
   float: left;
   color: #666666;
 }
+.module-list-box .info-text {
+  width: 350px;
+}
 .module-list-box .list-info-box {
-  width: 440px;
+  width: 390px;
 }
 .module-list-box .details {
   display: none;
@@ -991,9 +1019,8 @@
   margin-bottom: 10px;
 }
 .comment-textarea textarea {
-  width: 538px;
+  width: 100%;
   height: 124px;
-  padding: 5px;
 }
 .comment-textarea .edit-btn {
   display: inline-block;
@@ -1213,102 +1240,119 @@
   text-indent: -9999px;
 }
 .layout-nav-list a.pack {
+  display: inline-block;
   background: url("../images/tpls/pack-icon.png") #f1f1f1 no-repeat center;
 }
 .layout-nav-list a.pack:hover {
   background: url("../images/tpls/pack-icon-hover.png") #83c326 no-repeat center;
 }
 .layout-nav-list a.inter {
+  display: inline-block;
   background: url("../images/tpls/3g-icon.png") #f1f1f1 no-repeat center;
 }
 .layout-nav-list a.inter:hover {
   background: url("../images/tpls/3g-icon-hover.png") #83c326 no-repeat center;
 }
 .layout-nav-list a.ask {
+  display: inline-block;
   background: url("../images/tpls/iask-icon.png") #f1f1f1 no-repeat center;
 }
 .layout-nav-list a.ask:hover {
   background: url("../images/tpls/iask-icon-hover.png") #83c326 no-repeat center;
 }
 .layout-nav-list a.abroad {
+  display: inline-block;
   background: url("../images/tpls/abroad-icon.png") #f1f1f1 no-repeat center;
 }
 .layout-nav-list a.abroad:hover {
   background: url("../images/tpls/abroad-icon-hover.png") #83c326 no-repeat center;
 }
 .layout-nav-list a.mobile {
+  display: inline-block;
   background: url("../images/tpls/phone-icon.png") #f1f1f1 no-repeat center;
 }
 .layout-nav-list a.mobile:hover {
   background: url("../images/tpls/phone-icon-hover.png") #83c326 no-repeat center;
 }
 .layout-nav-list a.hall {
+  display: inline-block;
   background: url("../images/tpls/hall-icon.png") #f1f1f1 no-repeat center;
 }
 .layout-nav-list a.hall:hover {
   background: url("../images/tpls/hall-icon-hover.png") #83c326 no-repeat center;
 }
 .layout-nav-list a.activity {
+  display: inline-block;
   background: url("../images/tpls/activity-icon.png") #f1f1f1 no-repeat center;
 }
 .layout-nav-list a.activity:hover {
   background: url("../images/tpls/activity-icon-hover.png") #83c326 no-repeat center;
 }
 .layout-nav-list a.broadband {
+  display: inline-block;
   background: url("../images/tpls/broadband-icon.png") #f1f1f1 no-repeat center;
 }
 .layout-nav-list a.broadband:hover {
   background: url("../images/tpls/broadband-icon-hover.png") #83c326 no-repeat center;
 }
 .layout-nav-list a.near {
+  display: inline-block;
   background: url("../images/tpls/nearby-icon.png") #f1f1f1 no-repeat center;
 }
 .layout-nav-list a.near:hover {
   background: url("../images/tpls/nearby-icon-hover.png") #83c326 no-repeat center;
 }
 .layout-nav-list a.app {
+  display: inline-block;
   background: url("../images/tpls/app-icon.png") #f1f1f1 no-repeat center;
 }
 .layout-nav-list a.app:hover {
   background: url("../images/tpls/app-icon-hover.png") #83c326 no-repeat center;
 }
 .layout-nav-list a.message {
+  display: inline-block;
   background: url("../images/tpls/new-icon.png") #f1f1f1 no-repeat center;
 }
 .layout-nav-list a.message:hover {
   background: url("../images/tpls/new-icon-hover.png") #83c326 no-repeat center;
 }
 .layout-nav-list a.club {
+  display: inline-block;
   background: url("../images/tpls/club-icon.png") #f1f1f1 no-repeat center;
 }
 .layout-nav-list a.club:hover {
   background: url("../images/tpls/club-icon-hover.png") #83c326 no-repeat center;
 }
 .layout-nav-list a.increment {
+  display: inline-block;
   background: url("../images/tpls/business-icon.png") #f1f1f1 no-repeat center;
 }
 .layout-nav-list a.increment:hover {
   background: url("../images/tpls/business-icon-hover.png") #83c326 no-repeat center;
 }
 .layout-nav-list a.faq {
+  display: inline-block;
   background: url("../images/tpls/question-icon.png") #f1f1f1 no-repeat center;
 }
 .layout-nav-list a.faq:hover {
   background: url("../images/tpls/question-icon-hover.png") #83c326 no-repeat center;
 }
 .layout-nav-list a.payment {
+  display: inline-block;
   background: url("../images/tpls/top-up-icon.png") #f1f1f1 no-repeat center;
 }
 .layout-nav-list a.payment:hover {
   background: url("../images/tpls/top-up-icon-hover.png") #83c326 no-repeat center;
 }
 .layout-nav-list a.diy {
+  display: inline-block;
   background: url("../images/tpls/brick-icon.png") #f1f1f1 no-repeat center;
 }
 .layout-nav-list a.diy:hover {
   background: url("../images/tpls/brick-icon-hover.png") #83c326 no-repeat center;
 }
 .layout-nav-list a.service {
+  display: inline-block;
   background: url("../images/tpls/service-icon.png") #f1f1f1 no-repeat center;
 }
 .layout-nav-list a.service:hover {

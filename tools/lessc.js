@@ -22,7 +22,7 @@ var cssDir = path.join(publicDir, "css");
 
 function compile_less(input_file, output_file, callback) {  
     var cmd = ['lessc ', input_file, ' > ', output_file].join('');  
-    // console.log(cmd);
+    console.log(cmd);
     exec(
         cmd,
         function(error, stdout, stderr) {  

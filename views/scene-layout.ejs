@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%=title%></title>
+    <link href="/css/base.css" rel="stylesheet" type="text/css" />
+    <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+    <script src="/js/lib/jquery-1.8.2.js"></script>
+    <script src="/js/lib/jquery.plugin.js"></script>
+    <script src="/js/plugin/jquery.form.js"></script>
+    <% for(var i = 0; i < headJs.length; i++) { %>
+        <script src="<%= headJs[i] %>"></script>
+    <% } %>
+    <% for(var i = 0; i < headCss.length; i++) { %>
+        <link href="<%= headCss[i] %>" rel="stylesheet" type="text/css" />
+    <% } %>
+</head>
+<body>
+    <%- body%>
+</body>
+</html>

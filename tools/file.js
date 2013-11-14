@@ -4,18 +4,13 @@ var exec = require('child_process').exec;
 
 var path = require('path');
 
-var public_dir = path.join(__dirname, "..", "public");  
-  
-var less_dir = path.join(public_dir, "less", "base.less");  
-var css_dir = path.join(public_dir, "css", "base.css"); 
-
 /*
  * copy file
  */
 
 exports.copy = function(temp, target, callback){
-    // console.log("=====>", temp);
-    // console.log("=====>", target);
+    // console.log('=====>', temp);
+    // console.log('=====>', target);
     var _temp = temp.constructor === Array ? temp : [temp];
     var _target = target.constructor === Array ? target : [target];
     var _doCopy = function(tem, tar, doCallback){
@@ -33,7 +28,7 @@ exports.copy = function(temp, target, callback){
         });
     };
     if ( _temp.length != _target.length ) {
-        throw "参数错误";
+        throw '参数错误';
     }else{
         _doCopy(_temp.shift(), _target.shift(), callback);
     }
@@ -73,7 +68,7 @@ exports.existsConfig = function(temp, target, callback){
     };
     
     if ( _temp.length != _target.length ) {
-        throw "参数错误";
+        throw '参数错误';
     }else{
         _doExists(callback);
     }
@@ -83,39 +78,38 @@ exports.existsConfig = function(temp, target, callback){
  * edit file
  */
 
-exports.editFile = function (filepath, filename, param, callback) {
+exports.editLessFile = function (lessType, filepath, filename, param, callback) {
     if ( filepath && filename ) {
-        fs.realpath(filepath, function(err, rpath){
-            if ( err ) {
-                callback(err);
-                return false;
-            }
-            fs.readFile(
-                rpath + "/" + filename,
-                'utf-8',
-                function(readErr, data) {
-                    if (readErr) {
-                        callback(readErr);
-                        return false;
-                    } else {
-                        var strFile = data;
-                        for(var key in param){
-                            var reg = new RegExp("\@" + key + "[^\\;]+\\;", "gi");
-                            strFile = strFile.replace(reg, "@" + key + ":" + param[key] + ";");
-                        }
-                        var resultBuffer = new Buffer(strFile);
-                        fs.writeFile(rpath + "/" + filename,resultBuffer,function(writeErr){
-                            if(writeErr) {
-                                callback(writeErr);
-                                return false;
+        fs.exists(filepath, function (exists) {
+            if (exists) {
+                fs.readFile(
+                    filepath,
+                    'utf-8',
+                    function(err, data) {
+                        if (err) {
+                            callback(err);
+                            return false;
+                        } else {
+                            var strFile = data;
+                            for(var key in param){
+                                var reg = new RegExp('\@' + key + '[^\\;]+\\;', 'gi');
+                                strFile = strFile.replace(reg, '@' + key + ':' + param[key] + ';');
                             }
-                            console.log(rpath);
-                            lessc.lessc(rpath.replace(/\\[^\\]+\\?$/gi,"\\"), filename.replace("config-", ""), callback);
-                            // callback(readErr, "success");
-                        });
-                    } 
-                }
-            );
+                            var resultBuffer = new Buffer(strFile);
+                            fs.writeFile(filepath, resultBuffer, function(writeErr){
+                                if(writeErr) {
+                                    callback(writeErr);
+                                    return false;
+                                }
+                                lessc.lessc(lessType, filename.replace('config-', ''), callback);
+                                // callback(err, 'success');
+                            });
+                        } 
+                    }
+                );
+            }else{
+                callback('路径错误');
+            }
         });
     }else{
         callback('路径错误');

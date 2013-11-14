@@ -35,7 +35,7 @@
   padding: 10px;
   padding-top: 50px;
   overflow: auto;
-  background: url("../images/tpls/i.gif") #ffffff no-repeat 0 0;
+  background: url("../images/tpls/i.gif") #ffffff no-repeat center;
 }
 .chat-box .decorate {
   width: 9px;
@@ -240,7 +240,19 @@
 .chat-img .user-info dt {
   text-align: right;
 }
+.chat-img .user-money {
+  display: block;
+}
 .chat-img .user-money dd {
   padding-left: 12px;
   background: url("../images/lib/icon-list.png") no-repeat 0 -47px;
+}
+.chat-img .user-area {
+  display: block;
+}
+.chat-img .user-tit {
+  display: block;
+}
+.chat-img .user-exp {
+  display: block;
 }
