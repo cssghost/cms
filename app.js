@@ -45,6 +45,7 @@ app.get('/robot', sceneRobot.readConfig);
 app.get('/robot-body', sceneRobot.showView);
 
 app.post('/robot/chat/', sceneRobot.chat);
+app.post('/robot/info/', sceneRobot.info);
 
 http.createServer(app).listen(app.get('port'), function(){
     lessc.lesscAll();

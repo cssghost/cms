@@ -94,58 +94,65 @@
         <div class="group-title">
             客户与用户信息设置
         </div>
-        <div class="opt-content-wrap">
-            <div class="opt-tit">
-                客户信息设置
-            </div>
-            <div class="opt-content">
-                <div class="label-box">
-                    <label class="label-wrap">客服昵称 <input type="text" name="" id=""></label>
-                    <label class="label-wrap">客服头像 <input type="text" name="" id=""></label>
-                    <div class="head-img">
-                        
+        <div class="opt-content-wrap Js-info-wrap">
+            <form id="formInfo" class="form" method="post" enctype="multipart/form-data" action="/robot/info/">
+                <div class="opt-tit">
+                    客户信息设置
+                </div>
+                <div class="opt-content">
+                    <div class="label-box">
+                        <label class="label-wrap">客服昵称 <input type="text"></label>
                     </div>
-                </div>
-            </div>
-            <div class="opt-tit">
-                用户信息设置
-            </div>
-            <div class="opt-content">
-                <div class="label-box">
-                    <label class="label-wrap samp-span-name">默认用户名</label>
-                     <input type="text">
-                </div>
-                <div class="label-box">
-                    <div class="label-wrap samp-span-name">显示以下详情</div>
-                    <div class="label-wrap vt">
-                        <div>
-                            <label class="label-wrap">
-                                <input type="checkbox">地区
-                            </label>
-                        </div>
-                        <div>
-                            <label class="label-wrap">
-                                <input type="checkbox">头衔
-                            </label>
-                        </div>
-                        <div>
-                            <label class="label-wrap">
-                                <input type="checkbox">智慧币
-                            </label>
-                        </div>
-                        <div>
-                            <label class="label-wrap">
-                                <input type="checkbox">经验值
-                            </label>
+                    <div class="label-box">
+                        <label class="label-wrap">客服头像</label>
+                        <div class="label-wrap">
+                            <input type="file" name="image" class="input-file" />
+                            <div class="head-img">
+                                <img src="images/lib/i.gif" alt="" class="Js-photo-preview" />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="group-btn-wrap">
-                <a class="preview" href="javascript:void(0)">预览</a>
-                <a class="reset" href="javascript:void(0)">恢复</a>
-                <a class="apply" href="javascript:void(0)">应用</a>
-            </div>
+                <div class="opt-tit">
+                    用户信息设置
+                </div>
+                <div class="opt-content">
+                    <div class="label-box">
+                        <label class="label-wrap samp-span-name">默认用户名</label>
+                         <input type="text">
+                    </div>
+                    <div class="label-box">
+                        <div class="label-wrap samp-span-name">显示以下详情</div>
+                        <div class="label-wrap vt">
+                            <div>
+                                <label class="label-wrap">
+                                    <input type="checkbox">地区
+                                </label>
+                            </div>
+                            <div>
+                                <label class="label-wrap">
+                                    <input type="checkbox">头衔
+                                </label>
+                            </div>
+                            <div>
+                                <label class="label-wrap">
+                                    <input type="checkbox">智慧币
+                                </label>
+                            </div>
+                            <div>
+                                <label class="label-wrap">
+                                    <input type="checkbox">经验值
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group-btn-wrap">
+                    <a class="preview" href="javascript:void(0)">预览</a>
+                    <a class="reset" href="javascript:void(0)">恢复</a>
+                    <a class="apply" href="javascript:void(0)">应用</a>
+                </div>
+            </form>
         </div>
     </div>
     <div class="opt-group">

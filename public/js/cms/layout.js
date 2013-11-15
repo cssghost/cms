@@ -18,14 +18,15 @@ $(document).ready(function() {
         $('.cms-layout').height($(window).height() - 100);
         $('.cms-layout').width($(window).width() - 650);
         $('.cms-page-name').width($('.cms-layout').width());
+        $('.cms-option').height($(window).height() - 60);
     });
     $(window).resize();
 
     $('.group-title').click(function () {
-        if ($(this).siblings('.opt-content-wrap').is(':visible')) {
-            $(this).siblings('.opt-content-wrap').slideUp();
-        } else {
+        $('.opt-content-wrap').slideUp();
+        if ($(this).siblings('.opt-content-wrap').is(':hidden')) {
             $(this).siblings('.opt-content-wrap').slideDown();
         }
     });
+    $('.opt-group:not(":first")').find('.opt-content-wrap').hide();
 });

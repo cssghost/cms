@@ -168,12 +168,9 @@ body {
   border: 1px solid #cccccc;
 }
 .cms-option .opt-content .head-img {
-  position: absolute;
-  right: 0;
-  top: 0;
   display: inline-block;
-  width: 100px;
-  height: 120px;
+  width: 325px;
+  height: 325px;
   border: 1px solid #cccccc;
   overflow: hidden;
   vertical-align: top;
@@ -202,6 +199,7 @@ body {
   height: 20px;
   background: url('../images/cms/switch.png') no-repeat 0px 0px;
   vertical-align: top;
+  cursor: pointer;
 }
 .cms-option .opt-content .off {
   background-position: 0px -25px;
@@ -287,6 +285,7 @@ body {
 .cms-option .two-column .setting-column .opt-tit {
   text-align: left;
   position: relative;
+  font-size: 12px;
 }
 .cms-option .two-column .turn-back {
   position: absolute;
