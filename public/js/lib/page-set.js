@@ -93,8 +93,8 @@ function PageSet(options){
                 $hold = $('<li class="sort-hold-box"></li>'),
                 indexDrag = $drag.index(),
                 nChildLength = $list.children().length,
-                height = $dragWrap.height() + 5,
-                nHold, eqHold;
+                height = $list.children().outerHeight(true) * (nChildLength),
+                nHold;
 
             $list.append($clone);
             $drag.addClass("sort-choose-box");
@@ -112,10 +112,13 @@ function PageSet(options){
                 omt = omt < 0 ? 0 : ( omt > height ? height : omt );
                 nHold = Math.floor(omt/27);
                 nHold = nHold < 0 ? 0 : ( nHold > nChildLength ? nChildLength : nHold );
-                if( nHold >= nChildLength ){
-                    $list.append($hold);
-                }else{
-                    $hold.insertBefore( $list.children(".Js-hold-box").eq(nHold) );
+
+                if ( nHold != $hold.index() ) {
+                    if( nHold >= nChildLength ){
+                        $hold.index() != (nChildLength + 1) && $list.append($hold);
+                    }else{
+                        $hold.insertBefore( $list.children(".Js-hold-box").eq(nHold) );
+                    }  
                 }
                 $clone.css({
                     // left : oml + "px",
