@@ -229,6 +229,10 @@ body {
 .cms-option .opt-content .sort-drag-box {
   position: absolute;
 }
+.cms-option .opt-content .sort-choose-box {
+  opacity: 0.5;
+  filter: alpha(opacity= 50 );
+}
 .cms-option .opt-content .switch {
   display: inline-block;
   width: 52px;

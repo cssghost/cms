@@ -89,18 +89,20 @@ function PageSet(options){
                 mdl = event.pageX,
                 mdt = event.pageY,
                 mml,mmt,oml,omt,
-                $clone = $drag.clone(),
+                $clone = $drag.clone().addClass("sort-drag-box").removeClass("Js-hold-box"),
                 $hold = $('<li class="sort-hold-box"></li>'),
                 indexDrag = $drag.index(),
-                nChildLength = $list.children().length - 1,
+                nChildLength = $list.children().length,
                 height = $dragWrap.height() - 22,
                 nHold, eqHold;
-                console.log($clone);
-            $clone.insertBefore($drag);
-            $drag.addClass("sort-drag-box").removeClass("Js-hold-box").css({
+
+            $list.append($clone);
+            $drag.addClass("sort-choose-box");
+            $clone.css({
                 left : pos.left,
                 top : pos.top
             });
+
             $(document).on("mousemove", function(e){
                 e.preventDefault();
                 mml = e.pageX;
@@ -117,7 +119,7 @@ function PageSet(options){
                 // }else if ( nHold == indexDrag ){
                 //     $hold.insertAfter( $list.children(".Js-hold-box").first() );
                 }else{
-                    $hold.insertAfter( $list.children(".Js-hold-box").eq(nHold) );
+                    $hold.insertBefore( $list.children(".Js-hold-box").eq(nHold) );
                 }
                 // if ( nHold != ($hold.index() + 1) ) {
                 //     if ( nHold == 0 ) {
@@ -128,13 +130,13 @@ function PageSet(options){
                 //         $hold.insertAfter( $list.children(".sort-box").eq(nHold) );
                 //     }
                 // }
-                $drag.css({
+                $clone.css({
                     left : oml + "px",
                     top : omt + "px"
                 });
             }).on("mouseup", function(){
                 $clone.remove();
-                $drag.removeAttr("style").removeClass("sort-drag-box").addClass("Js-hold-box").insertAfter($hold);
+                $drag.removeClass("sort-choose-box").insertAfter($hold);
                 $dragWrap.find(".sort-hold-box").remove();
                 $(document).off("mousemove mouseup");
             });
