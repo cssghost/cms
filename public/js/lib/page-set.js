@@ -95,6 +95,7 @@ function PageSet(options){
                 nChildLength = $list.children().length - 1,
                 height = $dragWrap.height() - 22,
                 nHold, eqHold;
+                
             $clone.insertBefore($drag);
             $drag.addClass("sort-drag-box").removeClass("Js-hold-box").css({
                 left : pos.left,
