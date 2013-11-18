@@ -159,42 +159,37 @@
         <div class="group-title">
             输入区设置
         </div>
-        <div class="opt-content-wrap">
-            <div class="opt-tit">
-                功能开关(拖拽可排序)
-            </div>
-            <div class="opt-content">
-                <div class="label-box">
-                    <ul class="sort-box-wrap">
-                        <li class="sort-box-list">
-                            <div class="sort-box">
-                                表情
-                                <span class="switch"></span>
-                            </div>
-                        </li>
-                        <li class="sort-box-list">
-                            <div class="sort-box">
-                                截屏
-                                <span class="switch on"></span>
-                            </div>
-                        </li>
-                        <li class="sort-box-list">
-                            <div class="sort-box">
-                                上传图片
-                                <span class="switch on"></span>
-                            </div>
-                        </li>
-                    </ul>
-                    
-                    
-                    
+        <div class="opt-content-wrap Js-operation-wrap">
+            <form id="formOperation" class="form" method="post" enctype="multipart/form-data" action="/robot/operation/">
+                <div class="opt-tit">
+                    功能开关(拖拽可排序)
                 </div>
-            </div>
-            <div class="group-btn-wrap">
-                <a class="preview" href="javascript:void(0)">预览</a>
-                <a class="reset" href="javascript:void(0)">恢复</a>
-                <a class="apply" href="javascript:void(0)">应用</a>
-            </div>
+                <div class="opt-content">
+                    <div class="label-box">
+                        <div class="sort-box-wrap Js-drag-wrap">
+                            <ul class="sort-box-list">
+                                <li class="sort-box Js-hold-box">
+                                    表情
+                                    <span class="switch"></span>
+                                </li>
+                                <li class="sort-box Js-hold-box">
+                                    截屏
+                                    <span class="switch"></span>
+                                </li>
+                                <li class="sort-box Js-hold-box">
+                                    上传图片
+                                    <span class="switch"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="group-btn-wrap">
+                    <a class="preview" href="javascript:void(0)">预览</a>
+                    <a class="reset" href="javascript:void(0)">恢复</a>
+                    <a class="apply" href="javascript:void(0)">应用</a>
+                </div>
+            </form>
         </div>
     </div>
 </div>
