@@ -161,6 +161,14 @@ body {
 			overflow: hidden;
 			vertical-align: top;
 		}
+		.head-img-view {
+			.fr();
+			.w(211px);
+			.h(273px);
+			.mt(5px);
+			.bd(#ccc);
+			vertical-align: top;
+		}
 		.input-file {
 			.w(64px);
 			.mb(5px);
@@ -171,10 +179,32 @@ body {
 		    .bc(#fff);
 		    .bd(#000);
 		}
-		.sort-box-list {
+		& .sort-box-list {
 			.pos-r();
-			.h(21px);
+			.w(215px);
+			.mg(0 auto);
+		}
+		& .sort-box {
+			.w(215px); .h(20px);
 			.mb(5px);
+			.lh(20px);
+			.ti(1em);
+			.bd(#ccc);
+			.border-radius(3px);
+			background: url('../images/cms/sort-bg.png') repeat-x 0px 0px;
+			.cur-p();
+			.switch {
+				.fr();
+			}
+		}
+		& .sort-hold-box {
+			.w(215px); .h(20px);
+			.mb(5px);
+			.bd(#ccc, 1px, dotted);
+			.border-radius(3px);
+		}
+		& .sort-drag-box {
+			.pos-a();
 		}
 		.switch {
 			.dis-ib();
@@ -186,22 +216,6 @@ body {
 		}
 		.off {
 			.bp(0px -25px);
-		}
-		.sort-box {
-			position: absolute;
-			left: 50%;
-			.w(215px);
-			.h(20px);
-			.lh(20px);
-			.ti(1em);
-			.ml(-107px);
-			.bd(#ccc);
-			.border-radius(3px);
-			background: url('../images/cms/sort-bg.png') repeat-x 0px 0px;
-			.cur-p();
-			.switch {
-				position: absolute; right: 45px;
-			}
 		}
 	}
 	.setting {

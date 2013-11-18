@@ -59,6 +59,32 @@ $(document).ready(function() {
         }
     });
 
+    // operation set
+    new PageSet({
+        wrap : $(".Js-operation-wrap"),
+        drapWrap : ".Js-drag-wrap",
+        formAction : "/robot/info/",
+        doPreview : function(){
+
+        },
+        doReset : function(){
+            // var $wrap = $(".Js-chat-wrap"),
+            //     $isColor = $wrap.find("[name=isColor]"),
+            //     $color = $wrap.find("[name=color]"),
+            //     $isImage = $wrap.find("[name=isImage]"),
+            //     $isRepeat = $wrap.find("[name=isRepeat]"),
+            //     $image = $wrap.find("[name=image]");
+            // $isColor.prop("checked", true);
+            // $color.val("#fff");
+            // $isImage.prop("checked", false);
+            // $isRepeat.prop("checked", false);
+            // $image.val("");
+        },
+        doApply : function(){
+
+        }
+    });
+
     var _imgFlag = false;
     // image crop
     $("#formInfo").on("change", "input:file:last", function(event){

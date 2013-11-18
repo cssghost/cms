@@ -95,7 +95,7 @@ function PageSet(options){
                 nChildLength = $list.children().length - 1,
                 height = $dragWrap.height() - 22,
                 nHold, eqHold;
-                
+                console.log($clone);
             $clone.insertBefore($drag);
             $drag.addClass("sort-drag-box").removeClass("Js-hold-box").css({
                 left : pos.left,
@@ -112,10 +112,10 @@ function PageSet(options){
                 // omt = omt < 0 ? 0 : ( omt > height ? height : omt );
                 // nHold = Math.floor( (omt < 0 ? 0 : omt)/27 );
                 console.log(nHold, $hold.index());
-                if( nHold == 0 ){
-                    $list.prepend($hold);
-                }else if ( nHold == indexDrag ){
-                    $hold.insertAfter( $list.children(".Js-hold-box").first() );
+                if( nHold >= nChildLength ){
+                    $list.append($hold);
+                // }else if ( nHold == indexDrag ){
+                //     $hold.insertAfter( $list.children(".Js-hold-box").first() );
                 }else{
                     $hold.insertAfter( $list.children(".Js-hold-box").eq(nHold) );
                 }

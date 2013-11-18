@@ -175,6 +175,14 @@ body {
   overflow: hidden;
   vertical-align: top;
 }
+.cms-option .opt-content .head-img-view {
+  float: right;
+  width: 211px;
+  height: 273px;
+  margin-top: 5px;
+  border: 1px solid #cccccc;
+  vertical-align: top;
+}
 .cms-option .opt-content .input-file {
   width: 64px;
   margin-bottom: 5px;
@@ -190,8 +198,36 @@ body {
 }
 .cms-option .opt-content .sort-box-list {
   position: relative;
-  height: 21px;
+  width: 215px;
+  margin: 0 auto;
+}
+.cms-option .opt-content .sort-box {
+  width: 215px;
+  height: 20px;
   margin-bottom: 5px;
+  line-height: 20px;
+  text-indent: 1em;
+  border: 1px solid #cccccc;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background: url('../images/cms/sort-bg.png') repeat-x 0px 0px;
+  cursor: pointer;
+}
+.cms-option .opt-content .sort-box .switch {
+  float: right;
+}
+.cms-option .opt-content .sort-hold-box {
+  width: 215px;
+  height: 20px;
+  margin-bottom: 5px;
+  border: 1px dotted #cccccc;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+.cms-option .opt-content .sort-drag-box {
+  position: absolute;
 }
 .cms-option .opt-content .switch {
   display: inline-block;
@@ -203,25 +239,6 @@ body {
 }
 .cms-option .opt-content .off {
   background-position: 0px -25px;
-}
-.cms-option .opt-content .sort-box {
-  position: absolute;
-  left: 50%;
-  width: 215px;
-  height: 20px;
-  line-height: 20px;
-  text-indent: 1em;
-  margin-left: -107px;
-  border: 1px solid #cccccc;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  background: url('../images/cms/sort-bg.png') repeat-x 0px 0px;
-  cursor: pointer;
-}
-.cms-option .opt-content .sort-box .switch {
-  position: absolute;
-  right: 45px;
 }
 .cms-option .setting {
   float: right;
