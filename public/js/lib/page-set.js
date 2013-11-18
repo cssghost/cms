@@ -86,52 +86,39 @@ function PageSet(options){
             var $drag = $(this),
                 $list = $drag.parent(),
                 pos = $drag.position(),
-                mdl = event.pageX,
+                // mdl = event.pageX,
                 mdt = event.pageY,
                 mml,mmt,oml,omt,
                 $clone = $drag.clone().addClass("sort-drag-box").removeClass("Js-hold-box"),
                 $hold = $('<li class="sort-hold-box"></li>'),
                 indexDrag = $drag.index(),
                 nChildLength = $list.children().length,
-                height = $dragWrap.height() - 22,
+                height = $dragWrap.height() + 5,
                 nHold, eqHold;
 
             $list.append($clone);
             $drag.addClass("sort-choose-box");
             $clone.css({
-                left : pos.left,
+                // left : pos.left,
                 top : pos.top
             });
 
             $(document).on("mousemove", function(e){
                 e.preventDefault();
-                mml = e.pageX;
+                // mml = e.pageX;
                 mmt = e.pageY;
-                oml = pos.left + mml - mdl;
+                // oml = pos.left + mml - mdl;
                 omt = pos.top + mmt - mdt;
+                omt = omt < 0 ? 0 : ( omt > height ? height : omt );
                 nHold = Math.floor(omt/27);
                 nHold = nHold < 0 ? 0 : ( nHold > nChildLength ? nChildLength : nHold );
-                // omt = omt < 0 ? 0 : ( omt > height ? height : omt );
-                // nHold = Math.floor( (omt < 0 ? 0 : omt)/27 );
-                console.log(nHold, $hold.index());
                 if( nHold >= nChildLength ){
                     $list.append($hold);
-                // }else if ( nHold == indexDrag ){
-                //     $hold.insertAfter( $list.children(".Js-hold-box").first() );
                 }else{
                     $hold.insertBefore( $list.children(".Js-hold-box").eq(nHold) );
                 }
-                // if ( nHold != ($hold.index() + 1) ) {
-                //     if ( nHold == 0 ) {
-                //         $list.prepend($hold);
-                //     }else if (nHold == nChildLength){
-                //         $list.append($hold);
-                //     }else{
-                //         $hold.insertAfter( $list.children(".sort-box").eq(nHold) );
-                //     }
-                // }
                 $clone.css({
-                    left : oml + "px",
+                    // left : oml + "px",
                     top : omt + "px"
                 });
             }).on("mouseup", function(){
