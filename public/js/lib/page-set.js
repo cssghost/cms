@@ -86,9 +86,8 @@ function PageSet(options){
             var $drag = $(this),
                 $list = $drag.parent(),
                 pos = $drag.position(),
-                // mdl = event.pageX,
                 mdt = event.pageY,
-                mml,mmt,oml,omt,
+                mmt, omt,
                 $clone = $drag.clone().addClass("sort-drag-box").removeClass("Js-hold-box"),
                 $hold = $('<li class="sort-hold-box"></li>'),
                 indexDrag = $drag.index(),
@@ -99,15 +98,12 @@ function PageSet(options){
             $list.append($clone);
             $drag.addClass("sort-choose-box");
             $clone.css({
-                // left : pos.left,
                 top : pos.top
             });
 
             $(document).on("mousemove", function(e){
                 e.preventDefault();
-                // mml = e.pageX;
                 mmt = e.pageY;
-                // oml = pos.left + mml - mdl;
                 omt = pos.top + mmt - mdt;
                 omt = omt < 0 ? 0 : ( omt > height ? height : omt );
                 nHold = Math.floor(omt/27);
@@ -121,7 +117,6 @@ function PageSet(options){
                     }  
                 }
                 $clone.css({
-                    // left : oml + "px",
                     top : omt + "px"
                 });
             }).on("mouseup", function(){
