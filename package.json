@@ -9,8 +9,8 @@
     "express": "3.4.4",
     "express-ejs-layouts": "*",
     "ejs": "*",
+    "express-partials": "*",
     "less": "*",
-    "ImageMagick" : "*",
     "gm" : "*"
   }
 }
