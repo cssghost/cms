@@ -249,3 +249,13 @@ exports.info = function(req, res){
     //     break;
     // }
 };
+
+exports.operation = function(req, res){
+    var data = req.body;
+    console.log(data);
+
+}
+
+
+
+

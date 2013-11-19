@@ -62,6 +62,10 @@ $(document).ready(function() {
     // operation set
     new PageSet({
         wrap : $(".Js-operation-wrap"),
+        moduleSort : {
+            bindDrag : true,
+            bindSort : true
+        },
         drapWrap : ".Js-drag-wrap",
         formAction : "/robot/info/",
         doPreview : function(){

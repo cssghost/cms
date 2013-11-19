@@ -46,6 +46,7 @@ app.get('/robot-body', sceneRobot.showView);
 
 app.post('/robot/chat/', sceneRobot.chat);
 app.post('/robot/info/', sceneRobot.info);
+app.post('/robot/operation/', sceneRobot.operation);
 
 http.createServer(app).listen(app.get('port'), function(){
     lessc.lesscAll();
