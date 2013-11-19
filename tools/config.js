@@ -16,6 +16,15 @@ var lessPubDir = path.join(comLessDir, 'publish');
 // init css dir
 var cssDir = path.join(publicDir, 'css'); 
 
+// init js dir
+var comJsDir = path.join(publicDir, 'js');
+
+var jsDefDir = path.join(comJsDir, 'cms', 'config', 'default');
+var jsViewDir = path.join(comJsDir, 'cms', 'config', 'preview');
+var jsPubDir = path.join(comJsDir, 'cms', 'config', 'publish');
+
+var jsConfigDir = path.join(comJsDir, 'config');
+
 function Config(options){
     var self = this;
 
@@ -28,7 +37,17 @@ function Config(options){
     self.lessViewDir = lessViewDir;
     self.lessPubDir = lessPubDir;
 
+    console.log('------>', self.lessPubDir);
+
     self.cssDir = cssDir;
+
+    self.comJsDir = comJsDir;
+
+    self.jsDefDir = jsDefDir;
+    self.jsViewDir = jsViewDir;
+    self.jsPubDir = jsPubDir;
+
+    self.jsConfigDir = jsConfigDir;
 
     // server request
     self.request  = options.request;
@@ -37,6 +56,9 @@ function Config(options){
     // view
     self.viewName = options.viewName;
     self.viewParam = options.viewParam || [];
+
+    // edit less or js switch ==> { all, less, js }
+    self.editType = options.editType || 'all' ;
 
     // page load callback
     self.viewCallback = options.viewCallback;
@@ -54,41 +76,92 @@ Config.prototype.pageLoad = function(){
     var _pubLayoutFile = path.join(self.lessPubDir, 'layout.less');
     var _pubLayoutConfigFile = path.join(self.lessPubDir, 'config', 'config-layout.less');
 
-    var _defFile = path.join(self.lessDefDir, self.viewName + '.less');
-    var _defConfigFile = path.join(self.lessDefDir, 'config', 'config-' + self.viewName + '.less');
-    var _viewFile = path.join(self.lessViewDir, self.viewName + '.less');
-    var _viewConfigFile = path.join(self.lessViewDir, 'config', 'config-' + self.viewName + '.less');
-    var _pubFile = path.join(self.lessPubDir, self.viewName + '.less');
-    var _pubConfigFile = path.join(self.lessPubDir, 'config', 'config-' + self.viewName + '.less');
-    var _lessc = function(){
+    var _lessDefFile = path.join(self.lessDefDir, self.viewName + '.less');
+    var _lessDefConfigFile = path.join(self.lessDefDir, 'config', 'config-' + self.viewName + '.less');
+    var _lessViewFile = path.join(self.lessViewDir, self.viewName + '.less');
+    var _lessViewConfigFile = path.join(self.lessViewDir, 'config', 'config-' + self.viewName + '.less');
+    var _lessPubFile = path.join(self.lessPubDir, self.viewName + '.less');
+    var _lessPubConfigFile = path.join(self.lessPubDir, 'config', 'config-' + self.viewName + '.less');
+
+    var _jsDefFile = path.join(self.jsDefDir, 'config-' + self.viewName + '.js');
+    var _jsViewFile = path.join(self.jsViewDir, 'config-' + self.viewName + '.js');
+    var _jsPubFile = path.join(self.jsPubDir, 'config-' + self.viewName + '.js');
+
+    var _jsConfigFile = path.join(self.jsConfigDir, 'config-' + self.viewName + '.js');
+
+    var _lessc = function(callback){
         lessc.lessc(
-            "publish",
-            self.viewName + ".less",
+            'publish',
+            self.viewName + '.less',
             function(e, r){
                 if (e) {
                     throw e;
                 }
-                self.readConfig();
+                typeof callback == 'function' && callback();
             }
         );
     };
 
-    var arrTemp = [_defConfigFile, _defConfigFile, _defFile, _defFile];
-    var arrTarget = [_pubConfigFile, _viewConfigFile, _pubFile, _viewFile];
+    var _copyFile = function(callback){
+        file.copy(_jsPubFile, _jsConfigFile, function(e, r){
+            typeof callback == 'function' && callback();
+        });
+    };
+
+    var arrLessTemp = [_lessDefConfigFile, _lessDefConfigFile, _lessDefFile, _lessDefFile];
+    var arrLessTarget = [_lessPubConfigFile, _lessViewConfigFile, _lessPubFile, _lessViewFile];
 
     var arrLayoutTemp = [_defLayoutConfigFile, _defLayoutConfigFile, _defLayoutFile, _defLayoutFile];
     var arrLayoutTarget = [_pubLayoutConfigFile, _viewLayoutConfigFile, _pubLayoutFile, _viewLayoutFile];
 
-    arrTemp = self.viewName == 'layout' ? arrLayoutTemp : arrLayoutTemp.concat(arrTemp);
-    arrTarget = self.viewName == 'layout' ? arrLayoutTarget : arrLayoutTarget.concat(arrTarget);
+    arrLessTemp = self.viewName == 'layout' ? arrLayoutTemp : arrLayoutTemp.concat(arrLessTemp);
+    arrLessTarget = self.viewName == 'layout' ? arrLayoutTarget : arrLayoutTarget.concat(arrLessTarget);
 
-    // 初始化less文件
+    var arrJsTemp = [_jsDefFile, _jsDefFile, _jsPubFile];
+    var arrJsTarget = [_jsViewFile, _jsPubFile, _jsConfigFile];
+
+    var arrTemp = [];
+    var arrTarget = [];
+
+    self.chooseType(
+        function(){
+            arrTemp = arrLessTemp.concat(arrJsTemp);
+            arrTarget = arrLessTarget.concat(arrJsTarget);
+        },
+        function(){
+            arrTemp = arrLessTemp;
+            arrTarget = arrLessTarget;
+        },
+        function(){
+            arrTemp = arrJsTemp;
+            arrTarget = arrJsTarget;
+        }
+    );
+
+    // init all config files
     file.existsConfig(
         arrTemp,
         arrTarget,
         function(){
-            _lessc();
-            // self.response.send("page load");
+            self.chooseType(
+                function(){
+                    _copyFile(function(){
+                        _lessc(function(){
+                            self.readConfig();
+                        });
+                    });
+                },
+                function(){
+                    _lessc(function(){
+                        self.readConfig();
+                    });
+                },
+                function(){
+                    _copyFile(function(){
+                        self.readConfig();
+                    });
+                }
+            );
         }
     );
 
@@ -96,16 +169,16 @@ Config.prototype.pageLoad = function(){
 
 Config.prototype.readConfig = function() {
     var self = this;
-    var _pubFile = path.join(self.lessPubDir, self.viewName + '.less');
-    var _pubConfigFile = path.join(self.lessPubDir, 'config', 'config-' + self.viewName + '.less');
+    var _lessPubFile = path.join(self.lessPubDir, self.viewName + '.less');
+    var _lessPubConfigFile = path.join(self.lessPubDir, 'config', 'config-' + self.viewName + '.less');
     var _param = self.viewParam;
     var parseData = {};
 
     if ( _param.length ) {
-        fs.exists(_pubConfigFile, function (exists) {
+        fs.exists(_lessPubConfigFile, function (exists) {
             if (exists) {
                 fs.readFile(
-                    _pubConfigFile,
+                    _lessPubConfigFile,
                     'utf-8',
                     function(err, data) {
                         if (err) {
@@ -135,12 +208,12 @@ Config.prototype.readConfig = function() {
 
 Config.prototype.editPreview = function(){
     var self = this;
-    var _viewConfigFile = path.join(self.lessViewDir, 'config', 'config-' + self.viewName + '.less');
+    var _lessViewConfigFile = path.join(self.lessViewDir, 'config', 'config-' + self.viewName + '.less');
     var _param = self.viewParam[0];
 
     file.editLessFile(
         'preview',
-        _viewConfigFile,
+        _lessViewConfigFile,
         'config-' + self.viewName + '.less',
         _param,
         function(err, result){
@@ -151,12 +224,12 @@ Config.prototype.editPreview = function(){
 
 Config.prototype.editPublish = function(){
     var self = this;
-    var _pubConfigFile = path.join(self.lessPubDir, 'config', 'config-' + self.viewName + '.less');
+    var _lessPubConfigFile = path.join(self.lessPubDir, 'config', 'config-' + self.viewName + '.less');
     var _param = self.viewParam[0];
 
     file.editLessFile(
         'publish',
-        _pubConfigFile,
+        _lessPubConfigFile,
         'config-' + self.viewName + '.less',
         _param,
         function(err, result){
@@ -167,11 +240,11 @@ Config.prototype.editPublish = function(){
 
 Config.prototype.resetConfig = function(){
     var self = this;
-    var _defConfigFile = path.join(self.lessDefDir, 'config', 'config-' + self.viewName + '.less');
+    var _lessDefConfigFile = path.join(self.lessDefDir, 'config', 'config-' + self.viewName + '.less');
 
     file.editLessFile(
         'default',
-        _defConfigFile,
+        _lessDefConfigFile,
         'config-' + self.viewName + '.less',
         {},
         function(err, result){
@@ -179,3 +252,29 @@ Config.prototype.resetConfig = function(){
         }
     );
 }
+
+Config.prototype.chooseType = function(doAll, doLess, doJs){
+    var self = this;
+    switch(self.editType){
+        case 'all':
+            typeof doAll == 'function' && doAll();
+        break;
+        case 'less':
+            typeof doLess == 'function' && doLess();
+        break;
+        case 'js':
+            typeof doJs == 'function' && doJs();
+        break;
+        default:
+            throw 'config error';
+        break;
+    }
+}
+
+
+
+
+
+
+
+

@@ -9,8 +9,8 @@ var path = require('path');
  */
 
 exports.copy = function(temp, target, callback){
-    // console.log('=====>', temp);
-    // console.log('=====>', target);
+    console.log('=====>', temp);
+    console.log('=====>', target);
     var _temp = temp.constructor === Array ? temp : [temp];
     var _target = target.constructor === Array ? target : [target];
     var _doCopy = function(tem, tar, doCallback){
@@ -22,7 +22,7 @@ exports.copy = function(temp, target, callback){
                 if ( _temp.length ) {
                     _doCopy(_temp.shift(), _target.shift(), doCallback);
                 } else{
-                    doCallback();
+                    typeof doCallback == 'function' && doCallback(e, r);
                 }
             });
         });
@@ -63,7 +63,7 @@ exports.existsConfig = function(temp, target, callback){
                 }
             });
         } else{
-            doCallback();
+            typeof doCallback == 'function' && doCallback();
         }
     };
     

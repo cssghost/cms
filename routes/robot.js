@@ -18,6 +18,18 @@ var lessPubDir = path.join(comLessDir, 'publish');
 // init css dir
 var cssDir = path.join(publicDir, 'css'); 
 
+// init js dir
+var comJsDir = path.join(publicDir, 'js');
+
+var jsDefDir = path.join(comJsDir, 'cms', 'config', 'default');
+var jsViewDir = path.join(comJsDir, 'cms', 'config', 'preview');
+var jsPubDir = path.join(comJsDir, 'cms', 'config', 'publish');
+
+var jsConfigDir = path.join(comJsDir, 'config');
+
+// init css dir
+var cssDir = path.join(publicDir, 'css'); 
+
 exports.showView = function(req, res){
     res.render(
         'robot-iframe',
@@ -25,7 +37,10 @@ exports.showView = function(req, res){
             layout : 'scene-layout',
             title: '10000知道-机器人',
             headCss: ['/css/robot.css'],
-            headJs : [] 
+            headJs : [
+                'js/config/config-robot.js',
+                'js/tpls/robot.js'
+            ] 
         }
     );
 }
@@ -61,7 +76,7 @@ exports.chat = function(req, res){
     var data = req.body;
     var actionType = data.actionType;
     var _config;
-    if ( actionType == "default" ) {
+    if ( actionType == 'default' ) {
         _config = new Config.config({
             request : req,
             response : res,
@@ -139,12 +154,12 @@ exports.chat = function(req, res){
     });
 
     switch(actionType){
-        case "preview":
+        case 'preview':
             _config.editPreview();
         break;
-        case "default":
+        case 'default':
         break;
-        case "publish":
+        case 'publish':
             _config.editPublish();
         break;
         default:
@@ -157,7 +172,7 @@ exports.info = function(req, res){
     var data = req.body;
     var actionType = data.actionType;
     var _config;
-    if ( actionType == "default" ) {
+    if ( actionType == 'default' ) {
         _config = new Config.config({
             request : req,
             response : res,
@@ -252,7 +267,52 @@ exports.info = function(req, res){
 
 exports.operation = function(req, res){
     var data = req.body;
-    console.log(data);
+    var actionType = data.actionType;
+    var _config;
+    var editData = [
+        {
+            "id" : "expression",
+            "toggle" : "true"
+        },
+        {
+            "id" : "screenshot",
+            "toggle" : "true"
+        },
+        {
+            "id" : "upload",
+            "toggle" : "true"
+        }
+    ];
+
+    _config = new Config.config({
+        request : req,
+        response : res,
+        viewName : 'robot',
+        viewParam : [editData],
+        viewCallback : function(err, result){
+            // console.log(err, result);
+            if ( err ) {
+                res.send(err);
+            }else{
+                res.send(result);
+            }
+        }
+    });
+
+    switch(actionType){
+        case 'preview':
+            // _config.editPreview();
+        break;
+        case 'default':
+            _config.resetConfig();
+        break;
+        case 'publish':
+            // _config.editPublish();
+        break;
+        default:
+            throw '未知操作';
+        break;
+    }
 
 }
 

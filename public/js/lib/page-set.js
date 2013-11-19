@@ -59,7 +59,7 @@ function PageSet(options){
                 }
             },
             error: function (msg) {
-                alert("文件上传失败");    
+                alert("提交失败");    
             }
         });
         return false;
